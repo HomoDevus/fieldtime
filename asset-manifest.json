@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/fieldtime/static/js/main.42dd816c.js",
+    "static/js/591.ca41cfd7.js": "/fieldtime/static/js/591.ca41cfd7.js",
+    "static/media/FontAwesome.ttf": "/fieldtime/static/media/FontAwesome.1e59d2330b4c6deb84b3.ttf",
+    "favicon.ico": "/fieldtime/favicon.ico",
+    "index.html": "/fieldtime/index.html",
+    "favicon-32.png": "/fieldtime/favicon-32.png",
+    "favicon-16.png": "/fieldtime/favicon-16.png",
+    "manifest.json": "/fieldtime/manifest.json",
+    "serve.json": "/fieldtime/serve.json",
+    "main.42dd816c.js.map": "/fieldtime/static/js/main.42dd816c.js.map",
+    "591.ca41cfd7.js.map": "/fieldtime/static/js/591.ca41cfd7.js.map"
+  },
+  "entrypoints": [
+    "static/js/591.ca41cfd7.js",
+    "static/js/main.42dd816c.js"
+  ]
+}
