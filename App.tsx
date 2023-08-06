@@ -1,8 +1,8 @@
-import {Col1} from "./src/RNCore/components/markup/markup";
-import {FieldTime} from "./src/RNCore/components/fields/FieldTime";
 import React from "react";
-import {EDate} from "./src/RNCore/sugar/date";
-import {Text} from "react-native";
+import { Text } from "react-native";
+import { FieldTime } from "./src/RNCore/components/fields/FieldTime";
+import { Col1 } from "./src/RNCore/components/markup/markup";
+import { EDate } from "./src/RNCore/sugar/date";
 
 export default function App() {
     return (
@@ -21,7 +21,11 @@ export default function App() {
                     value={null}
                     class={'w-50 mt-2 bg-success'}
                 />
-
+                <FieldTime
+                    value={null}
+                    class={'w-25 mt-2 bg-black text-white'}
+                    useButtons
+                />
         </Col1>
 
     );
