@@ -26,6 +26,17 @@ export default function App() {
                     class={'w-25 mt-2 bg-black text-white'}
                     useButtons
                 />
+                <FieldTime
+                    value={"12:12"}
+                    class="mt-2 w-100 bg-silverLight text-primary"
+                    useButtons
+                />
+                  <FieldTime
+                    value={"12:12"}
+                    class="mt-2 bg-body text-primary"
+                    useButtons
+                    onChange={console.log}
+                />
         </Col1>
 
     );

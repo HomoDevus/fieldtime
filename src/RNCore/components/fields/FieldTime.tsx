@@ -1,5 +1,5 @@
 import { FontAwesome } from "@expo/vector-icons";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Pressable, TextInput, View } from "react-native";
 
 import tw from "../../libs/tailwind";
@@ -30,6 +30,7 @@ function changeHour(time: string, shift: number) {
 
 export function FieldTime(props: ITimeField) {
     const [value, setValue] = useState(props?.value && timePattern.test(props.value) ? props.value : '')
+    const textInputRef = useRef<TextInput | null>(null);
 
     function handleChange(text: string) {
         let formattedText = text.replace(/[^0-9]/g, "")
@@ -45,31 +46,36 @@ export function FieldTime(props: ITimeField) {
         }
     }
 
-    const handleAddHour = () => {
+    function handleBlur(text: string) {
+        return props?.onChange && text.length === 5 && timePattern.test(text) && props.onChange(text)
+    }
+
+    function handleAddHour() {
         setValue(prev => changeHour(prev, 1))
     };
 
-    const handleSubtractHour = () => {
-        setValue(prev => changeHour(prev, -1)) 
+    function handleSubtractHour() {
+        setValue(prev => changeHour(prev, -1))
     };
 
     return <View style={tw`flex flex-row gap-2 items-center ${props.class || ''}`}>
     {props.useButtons && (
-        <Pressable onPress={handleSubtractHour}>
+        <Pressable onPress={handleSubtractHour} onBlur={() => handleBlur(value)}>
             <FontAwesome name="minus" style={tw`text-inherit`} />
         </Pressable>
       )}
     <TextInput
+        ref={textInputRef}
         placeholder="--:--"
         inputMode="numeric"
         maxLength={5}
         value={value}
         onChangeText={handleChange}
-        onBlur={({nativeEvent}) => props.onChange && props.onChange(nativeEvent.text)}
+        onBlur={({nativeEvent}) => handleBlur(nativeEvent.text)}
         style={tw`w-full text-inherit`}
     />
       {props.useButtons && (
-        <Pressable onPress={handleAddHour}>
+        <Pressable onPress={handleAddHour} onBlur={() => handleBlur(value)}>
             <FontAwesome name="plus" style={tw`text-inherit`} />
         </Pressable>
       )}
