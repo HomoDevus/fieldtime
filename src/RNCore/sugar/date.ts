@@ -1,4 +1,4 @@
-import {zfill} from "./text";
+import { zfill } from "./text";
 
 export class EDate extends Date {
 
@@ -90,7 +90,7 @@ export class EDate extends Date {
         return ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье']
     }
 
-    change({days = 0, hours = 0, minutes = 0, seconds = 0}) {
+    change({ days = 0, hours = 0, minutes = 0, seconds = 0 }) {
         let delta = days * 86400000 || 0
         delta += hours * 3600000 || 0
         delta += minutes * 60000 || 0
@@ -141,6 +141,8 @@ export class EDate extends Date {
     }
 }
 
+export const timePattern = /^([0-2]|[01]\d:|2[0-3]:)([0-5]\d?)?$/
+
 // export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 export const sleep = (milliseconds: number) => {
     const date = Date.now();
@@ -152,5 +154,19 @@ export const sleep = (milliseconds: number) => {
 
 export const dateIn = (date: string, dateFrom: string, dateTo: string | null) => {
     if (!dateTo) return date === dateFrom
-    else return  date >= dateFrom && date <= dateTo
+    else return date >= dateFrom && date <= dateTo
+}
+
+export const shiftHour = (time: string, shift: number) => {
+    if (time.length < 2) {
+        time = '00:00'
+    }
+
+    let updated = zfill(parseInt(time.slice(0, 2)) + shift) + time.slice(2)
+
+    if (timePattern.test(updated)) {
+        return updated
+    }
+
+    return time
 }
